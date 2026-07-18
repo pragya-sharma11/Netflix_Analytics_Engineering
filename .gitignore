@@ -1,3 +1,6 @@
 .venv
 Netflix_Analytics/profiles.yml
 /logs
+Datasources/
+*.parquet
+*.csv

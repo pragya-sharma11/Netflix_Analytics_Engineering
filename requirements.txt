@@ -1,0 +1,7 @@
+faker 
+pandas 
+pyarrow 
+numpy 
+tqdm
+pycountry
+ipykernel
