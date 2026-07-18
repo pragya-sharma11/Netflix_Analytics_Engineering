@@ -1,1 +1,3 @@
-datasources
+.venv
+Netflix_Analytics/profiles.yml
+/logs
