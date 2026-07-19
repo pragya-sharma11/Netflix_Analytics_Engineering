@@ -4,3 +4,4 @@ Netflix_Analytics/profiles.yml
 Datasources/
 *.parquet
 *.csv
+DataSource_Generator/test.ipynb
