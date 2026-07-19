@@ -17,6 +17,6 @@ recommendation_id,
     rating                 
 from {{ source('main', 'recommendation_logs') }}
     {% if is_incremental() %}
-        where TO_TIMESTAMP_NTZ(recommendation_timestamp/ 1000000)::date >= coalesce((select max(TO_TIMESTAMP_NTZ(recommendation_timestamp/ 1000000)::date) from {{ source('main', 'recommendation_logs') }}), '1900-01-01'::date)
+        where TO_TIMESTAMP_NTZ(recommendation_timestamp/ 1000000)::date > coalesce((select max(TO_TIMESTAMP_NTZ(recommendation_timestamp/ 1000000)::date) from {{ source('main', 'recommendation_logs') }}), '1900-01-01'::date)
     {% endif %}
     
