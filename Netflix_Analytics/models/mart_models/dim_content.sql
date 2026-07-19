@@ -12,7 +12,9 @@ final AS (
 SELECT
 -- Business Key
 content_id,
-
+{{ dbt_utils.generate_surrogate_key(
+    ['content_id']
+) }} as content_key,
 -- Basic Content Information
 title,
 content_type,
