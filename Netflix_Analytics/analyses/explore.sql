@@ -1,1 +1,1 @@
-SELECT * from {{source('main','recommendation_logs')}}
+SELECT recommendation_id from {{ref('intm_recommendation_performance')}} group by recommendation_id having count(recommendation_id)>1

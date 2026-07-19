@@ -1,3 +1,9 @@
+{{ config(
+    materialized='incremental',
+    unique_key='subscription_id',
+    incremental_strategy='merge'
+) }}
+
 with user_subs as (
 SELECT 
 u.user_id as userid,
@@ -11,7 +17,7 @@ case when s.SUBSCRIPTION_STATUS='ACTIVE' then TRUE else FALSE end as is_active_s
 case when s.PLAN_NAME='Premium' then TRUE else FALSE end as is_premium_plan
 from {{ref('stg_users')}} as u 
 LEFT JOIN {{ref('stg_subscriptions')}} as s on u.user_id = s.user_id
-LEFT JOIN {{source('main', 'us_exchange_rates')}} ex on ex.currency = s.currency
+{{ exchange_rate_join() }}= s.currency
 )
 
 SELECT 
@@ -49,3 +55,11 @@ is_active_subscription,
 is_premium_plan
 
 from user_subs
+{% if is_incremental() %}
+
+WHERE subscription_id NOT IN (
+    SELECT subscription_id
+    FROM {{ this }}
+)
+
+{% endif %}

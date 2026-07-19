@@ -1,0 +1,1 @@
+{% macro exchange_rate_join() %} LEFT JOIN {{source('main', 'us_exchange_rates')}} ex on ex.currency {% endmacro %}
