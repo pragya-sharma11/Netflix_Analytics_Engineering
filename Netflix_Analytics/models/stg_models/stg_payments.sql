@@ -1,5 +1,5 @@
 -- incremental load
-{{config(materialized = 'incremental')}}
+{{config(materialized = 'incremental', UNIQUE_KEY = 'payment_id')}}
 
 Select 
 payment_id,        

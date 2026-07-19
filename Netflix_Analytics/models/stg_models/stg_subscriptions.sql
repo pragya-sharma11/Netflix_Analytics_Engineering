@@ -1,5 +1,5 @@
 -- incremental load
-{{config(materialized = 'incremental')}}
+{{config(materialized = 'incremental', unique_key='subscription_id')}}
 
 Select 
 *
