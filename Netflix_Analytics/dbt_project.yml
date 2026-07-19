@@ -32,5 +32,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   Netflix_Analytics:
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    stg_models:
+      +materialized: table
+      +schema: stg_models
+    intm_models:
+      +materialized: table
+      +schema: intm_models
+    mart_models:
+      +materialized: table
+      +schema: mart_models

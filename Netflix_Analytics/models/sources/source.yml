@@ -1,0 +1,12 @@
+sources:
+  - name: main
+    database: NETFLIX
+    schema: MAIN 
+    tables:
+      - name : users
+      - name : content_catalog
+      - name : subscriptions
+      - name : payments
+      - name : marketing_acquisition
+      - name : recommendation_logs
+      - name : us_exchange_rates

@@ -24,5 +24,28 @@ currency_to_usd = {
     "NZD": 0.60,
     "TRY": 0.025
 }
+currency_to_country = {
+    "USD": "United States",
+    "EUR": "Germany",          # Representative Eurozone country
+    "GBP": "United Kingdom",
+    "INR": "India",
+    "JPY": "Japan",
+    "CAD": "Canada",
+    "AUD": "Australia",
+    "BRL": "Brazil",
+    "MXN": "Mexico",
+    "KRW": "South Korea",
+    "CNY": "China",
+    "SGD": "Singapore",
+    "CHF": "Switzerland",
+    "AED": "United Arab Emirates",
+    "SAR": "Saudi Arabia",
+    "ZAR": "South Africa",
+    "SEK": "Sweden",
+    "NOK": "Norway",
+    "NZD": "New Zealand",
+    "TRY": "Turkey"
+}
 df = pd.DataFrame({'exchange_rates': list(currency_to_usd.values()), 'currency': list(currency_to_usd.keys())})
+df['country'] = df['currency'].map(currency_to_country)
 df.to_parquet('../Datasources/us_exchange_rates.parquet')
