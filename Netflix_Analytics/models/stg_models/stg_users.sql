@@ -17,6 +17,6 @@ signup_date,
 account_status
 from {{ source('main', 'users') }}
     {% if is_incremental() %}
-        signup_date >= coalesce((select max(signup_date) from {{ this }}), '1900-01-01')
+        where signup_date >= coalesce((select max(signup_date) from {{ this }}), '1900-01-01')
     {% endif %}
     

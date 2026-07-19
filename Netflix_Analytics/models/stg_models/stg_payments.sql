@@ -16,6 +16,6 @@ refund_amount,
 renewal_number
 from {{ source('main', 'payments') }}
     {% if is_incremental() %}
-        TO_TIMESTAMP_NTZ(payment_date / 1000000)::date >= coalesce((select max(TO_TIMESTAMP_NTZ(payment_date / 1000000))::date from {{ this }}), '1900-01-01'::date)
+        where TO_TIMESTAMP_NTZ(payment_date / 1000000)::date >= coalesce((select max(TO_TIMESTAMP_NTZ(payment_date / 1000000)::date) from {{ source('main', 'payments') }}), '1900-01-01'::date)
     {% endif %}
     
